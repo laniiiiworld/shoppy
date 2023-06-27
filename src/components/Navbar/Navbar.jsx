@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RiTShirt2Line } from 'react-icons/ri';
 import { BsCart4, BsPencilFill } from 'react-icons/bs';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
+import { onUserStateChanged, login, logout } from '../../api/firebase';
 
 export default function Navbar() {
+  const [user, setUser] = useState();
+  const handleLogin = () => {
+    login().then(setUser);
+  };
+  const handleLogout = () => {
+    logout().then(setUser);
+  };
+
+  useEffect(() => {
+    onUserStateChanged(setUser);
+  }, []);
+
   return (
     <header className={styles.header}>
       <Link className={styles.logo} to='/'>
@@ -21,7 +34,16 @@ export default function Navbar() {
         <Link to='/products/new' className={styles.button__icon}>
           <BsPencilFill />
         </Link>
-        <button className={styles.button__text}>Login</button>
+        {!user && (
+          <button className={styles.button__text} onClick={handleLogin}>
+            Login
+          </button>
+        )}
+        {user && (
+          <button className={styles.button__text} onClick={handleLogout}>
+            Logout
+          </button>
+        )}
       </nav>
     </header>
   );
