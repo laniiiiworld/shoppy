@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #d1d5db;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: var(--brand-color);
+  text-decoration: none;
+}
+
+.logo__icon {
+  padding: 4px;
+  font-size: 30px;
+}
+
+.logo__text {
+  margin: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.button__text,
+.button__icon {
+  padding: 0.4rem;
+  margin: 0 0.8rem;
+  font-weight: 600;
+  color: var(--font-black);
+}
+
+.button__text {
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.button__icon {
+  font-size: 1.4rem;
+}
+
+.button__text:visited,
+.button__icon:visited {
+  color: var(--font-black);
+}
+
+.button__text:hover,
+.button__icon:hover {
+  color: var(--brand-color);
+}
