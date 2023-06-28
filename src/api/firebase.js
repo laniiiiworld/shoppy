@@ -10,33 +10,30 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
-
 const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
 export function onUserStateChanged(callback) {
   try {
-    onAuthStateChanged(auth, (user) => callback(user));
+    onAuthStateChanged(auth, callback);
   } catch (error) {
     const { code, message } = error;
     console.error(code, message);
   }
 }
 
-export async function login() {
+export function login() {
   try {
-    const result = await signInWithPopup(auth, provider);
-    return result.user;
+    signInWithPopup(auth, provider);
   } catch (error) {
     const { code, message } = error;
     console.error(code, message);
   }
 }
 
-export async function logout() {
+export function logout() {
   try {
-    await signOut(auth);
-    return null;
+    signOut(auth);
   } catch (error) {
     const { code, message } = error;
     console.error(code, message);

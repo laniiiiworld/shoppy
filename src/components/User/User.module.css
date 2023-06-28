@@ -1,0 +1,23 @@
+.div {
+  display: flex;
+  align-items: center;
+}
+
+.photo {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+}
+
+.name {
+  margin-left: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .name {
+    display: block;
+  }
+}

@@ -4,15 +4,10 @@ import { BsCart4, BsPencilFill } from 'react-icons/bs';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { onUserStateChanged, login, logout } from '../../api/firebase';
+import User from '../User/User';
 
 export default function Navbar() {
   const [user, setUser] = useState();
-  const handleLogin = () => {
-    login().then(setUser);
-  };
-  const handleLogout = () => {
-    logout().then(setUser);
-  };
 
   useEffect(() => {
     onUserStateChanged(setUser);
@@ -35,14 +30,17 @@ export default function Navbar() {
           <BsPencilFill />
         </Link>
         {!user && (
-          <button className={styles.button__text} onClick={handleLogin}>
+          <button className={styles.button__text} onClick={login}>
             Login
           </button>
         )}
         {user && (
-          <button className={styles.button__text} onClick={handleLogout}>
-            Logout
-          </button>
+          <>
+            <User user={user} />
+            <button className={styles.button__text} onClick={logout}>
+              Logout
+            </button>
+          </>
         )}
       </nav>
     </header>
