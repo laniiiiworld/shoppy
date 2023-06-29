@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useAuthContext } from '../../constext/AuthContext';
 import { RiTShirt2Line } from 'react-icons/ri';
 import { BsCart4, BsPencilFill } from 'react-icons/bs';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
-import { onUserStateChanged, login, logout } from '../../api/firebase';
 import User from '../User/User';
 
 export default function Navbar() {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    onUserStateChanged(setUser);
-  }, []);
+  const { user, login, logout } = useAuthContext();
 
   return (
     <header className={styles.header}>
@@ -23,12 +19,16 @@ export default function Navbar() {
         <Link to='/products' className={styles.button__text}>
           Products
         </Link>
-        <Link to='/carts' className={styles.button__icon}>
-          <BsCart4 />
-        </Link>
-        <Link to='/products/new' className={styles.button__icon}>
-          <BsPencilFill />
-        </Link>
+        {user && (
+          <Link to='/carts' className={styles.button__icon}>
+            <BsCart4 />
+          </Link>
+        )}
+        {user?.isAdmin && (
+          <Link to='/products/new' className={styles.button__icon}>
+            <BsPencilFill />
+          </Link>
+        )}
         {!user && (
           <button className={styles.button__text} onClick={login}>
             Login
