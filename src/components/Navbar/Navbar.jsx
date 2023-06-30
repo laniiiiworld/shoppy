@@ -5,6 +5,7 @@ import { BsCart4, BsPencilFill } from 'react-icons/bs';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import User from '../User/User';
+import Button from '../ui/Button/Button';
 
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
@@ -29,17 +30,11 @@ export default function Navbar() {
             <BsPencilFill />
           </Link>
         )}
-        {!user && (
-          <button className={styles.button__text} onClick={login}>
-            Login
-          </button>
-        )}
+        {!user && <Button text='Login' onClick={login} />}
         {user && (
           <>
             <User user={user} />
-            <button className={styles.button__text} onClick={logout}>
-              Logout
-            </button>
+            <Button text='Logout' onClick={logout} />
           </>
         )}
       </nav>

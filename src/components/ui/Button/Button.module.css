@@ -1,0 +1,17 @@
+.button__text {
+  background: var(--brand-color);
+  color: var(--font-white);
+  padding: 0.4rem;
+  margin: 0 0.8rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-radius: 0.4rem;
+}
+
+.button__text:visited {
+  color: var(--font-black);
+}
+
+.button__text:hover {
+  color: var(--brand-color);
+}
