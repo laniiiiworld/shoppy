@@ -1,0 +1,35 @@
+.product {
+  cursor: pointer;
+  margin: auto;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.product:hover {
+  opacity: 0.7;
+}
+
+.image {
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.4rem 0;
+  padding: 0 0.4rem;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title,
+.price {
+  margin: 0;
+  font-size: 1rem;
+}

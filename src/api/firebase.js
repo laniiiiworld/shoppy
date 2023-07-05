@@ -56,6 +56,16 @@ async function adminUser(user) {
   return user;
 }
 
+export async function getProducts() {
+  const snapshot = await get(ref(database, 'products'));
+  if (snapshot.exists()) {
+    return Object.values(snapshot.val());
+  } else {
+    console.log('No data available');
+  }
+  return [];
+}
+
 export async function addNewProduct(product, image) {
   const id = uuidv4();
   return set(ref(database, `products/${id}`), {
