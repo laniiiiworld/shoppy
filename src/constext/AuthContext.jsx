@@ -10,7 +10,7 @@ export function AuthContextProvider({ children }) {
     onUserStateChanged(setUser);
   }, []);
 
-  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, uid: user?.uid, login, logout }}>{children}</AuthContext.Provider>;
 }
 
 export function useAuthContext() {

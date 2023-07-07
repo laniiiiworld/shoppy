@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Button from '../../components/ui/Button/Button';
+import { useCartContext } from '../../constext/CartContext';
 import styles from './ProductDetail.module.css';
 
 export default function ProductDetail() {
+  const { addCarts } = useCartContext();
   const {
     state: {
       product: { id, title, price, image, category, description, options },
     },
   } = useLocation();
   const [selected, setSelected] = useState(options && '0');
+  const [isUploading, setIsUploading] = useState(false);
+  const [success, setSuccess] = useState('');
   const handleChange = (e) => setSelected(e.target.value);
   const handleClick = (e) => {
-    //장바구니에 추가
+    e.preventDefault();
+    setIsUploading(true);
+    try {
+      addCarts({ id, title, price, image, option: selected, quantity: 1 });
+
+      setSuccess('장바구니에 추가되었습니다.');
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
@@ -38,7 +53,8 @@ export default function ProductDetail() {
               ))}
             </select>
           </div>
-          <Button text='장바구니에 추가' onClick={handleClick} />
+          {success && <p>✅ {success}</p>}
+          <Button text={isUploading ? '추가중...' : '장바구니에 추가'} onClick={handleClick} disabled={isUploading} />
         </div>
       </section>
     </>

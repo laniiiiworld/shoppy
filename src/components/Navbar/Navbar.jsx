@@ -1,11 +1,12 @@
 import React from 'react';
 import { useAuthContext } from '../../constext/AuthContext';
 import { RiTShirt2Line } from 'react-icons/ri';
-import { BsCart4, BsPencilFill } from 'react-icons/bs';
+import { BsPencilFill } from 'react-icons/bs';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import User from '../User/User';
 import Button from '../ui/Button/Button';
+import CartStatus from '../CartStatus/CartStatus';
 
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
@@ -22,7 +23,7 @@ export default function Navbar() {
         </Link>
         {user && (
           <Link to='/carts' className={styles.button__icon}>
-            <BsCart4 />
+            <CartStatus />
           </Link>
         )}
         {user?.isAdmin && (
