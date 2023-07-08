@@ -1,0 +1,41 @@
+.area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eeeeee;
+  width: 7rem;
+  height: 6rem;
+  margin: 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.label {
+  font-size: 1rem;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--brand-color);
+}
+
+@media (min-width: 640px) {
+  .area {
+    padding: 0.5rem;
+  }
+
+  .label {
+    font-size: 1.2rem;
+  }
+
+  .price {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .area {
+    margin: 0.5rem 3rem 2rem 3rem;
+  }
+}

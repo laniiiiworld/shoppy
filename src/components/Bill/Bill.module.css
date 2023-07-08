@@ -1,0 +1,11 @@
+.bill {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.icon {
+  flex-shrink: 0;
+}

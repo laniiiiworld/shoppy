@@ -11,7 +11,7 @@ export default function ProductDetail() {
       product: { id, title, price, image, category, description, options },
     },
   } = useLocation();
-  const [selected, setSelected] = useState(options && '0');
+  const [selected, setSelected] = useState(options && options[0]);
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState('');
   const handleChange = (e) => setSelected(e.target.value);
@@ -47,9 +47,7 @@ export default function ProductDetail() {
             </label>
             <select id='select' className={styles.options__select} value={selected} onChange={handleChange}>
               {options.map((option, index) => (
-                <option key={index} value={index}>
-                  {option}
-                </option>
+                <option key={index}>{option}</option>
               ))}
             </select>
           </div>

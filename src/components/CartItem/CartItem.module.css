@@ -1,0 +1,46 @@
+.cartItem {
+  display: flex;
+}
+
+.imageArea {
+  flex-basis: 20%;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  border-radius: 0.4rem;
+}
+
+.info {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5rem;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.buttons {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.quantity {
+  margin-left: 0.2rem;
+}
+
+.button {
+  margin-left: 0.2rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--brand-color);
+}
