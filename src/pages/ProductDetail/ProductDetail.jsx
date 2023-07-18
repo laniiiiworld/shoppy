@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import useCarts from '../../ hooks/useCarts';
 import Button from '../../components/ui/Button/Button';
-import { useCartContext } from '../../constext/CartContext';
 import styles from './ProductDetail.module.css';
 
 export default function ProductDetail() {
-  const { addCarts } = useCartContext();
   const {
     state: {
       product: { id, title, price, image, category, description, options },
@@ -14,12 +13,13 @@ export default function ProductDetail() {
   const [selected, setSelected] = useState(options && options[0]);
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState('');
+  const { addItem } = useCarts();
   const handleChange = (e) => setSelected(e.target.value);
   const handleClick = (e) => {
     e.preventDefault();
     setIsUploading(true);
     try {
-      addCarts({ id, title, price, image, option: selected, quantity: 1 });
+      addItem.mutate({ id, title, price, image, option: selected, quantity: 1 });
 
       setSuccess('장바구니에 추가되었습니다.');
       setTimeout(() => setSuccess(''), 3000);

@@ -1,12 +1,17 @@
 import React from 'react';
 import CartItem from '../../components/CartItem/CartItem';
-import { useCartContext } from '../../constext/CartContext';
 import Button from '../../components/ui/Button/Button';
 import Bill from '../../components/Bill/Bill';
 import styles from './MyCarts.module.css';
+import useCarts from '../../ hooks/useCarts';
 
 export default function Carts() {
-  const { carts, updateCarts, deleteCarts, deleteAllCartItems } = useCartContext();
+  const {
+    cartQuery: { isLoading, data: carts },
+    updateItem,
+    removeItem,
+    removeAllItems,
+  } = useCarts();
   const hasProducts = carts && carts.length > 0;
   const productPrice = carts && carts.reduce((acc, item) => (acc += item.price * item.quantity), 0);
   const handleClick = (e) => {
@@ -15,10 +20,12 @@ export default function Carts() {
       return;
     }
     alert('주문 되었습니다.');
-    deleteAllCartItems();
+    removeAllItems.mutate();
   };
-  const handleUpdate = (product, quantity) => updateCarts({ ...product, quantity });
-  const handleDelete = (productId, option) => deleteCarts(productId, option);
+  const handleUpdate = (product, quantity) => updateItem.mutate({ ...product, quantity });
+  const handleDelete = (productId, option) => removeItem.mutate({ productId, option });
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <section className={styles.section}>
