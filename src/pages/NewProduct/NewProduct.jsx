@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
-import { addNewProduct } from '../../api/firebase';
+import useProducts from '../../ hooks/useProducts';
 import { uploadImage } from '../../api/uploader';
 import Button from '../../components/ui/Button/Button';
 import styles from './NewProduct.module.css';
 
 export default function NewProduct() {
   const [product, setProduct] = useState({});
+  const { addProduct } = useProducts();
   const [file, setFile] = useState();
-  const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsUploading(true);
     try {
       const url = await uploadImage(file);
-      await addNewProduct(product, url);
-
-      setSuccess('성공적으로 등록되었습니다.');
-      setTimeout(() => setSuccess(''), 3000);
+      addProduct.mutate(
+        { product, url },
+        {
+          onSuccess: () => {
+            setSuccess('성공적으로 등록되었습니다.');
+            setTimeout(() => setSuccess(''), 3000);
+          },
+        }
+      );
     } catch (error) {
       console.error(error);
     } finally {
