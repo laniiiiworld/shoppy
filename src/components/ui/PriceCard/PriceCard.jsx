@@ -8,7 +8,7 @@ export default function PriceCard({ text, price }) {
         {text}
       </label>
       <span className={styles.price} id='price'>
-        {price}
+        {price.toLocaleString()}
       </span>
     </div>
   );

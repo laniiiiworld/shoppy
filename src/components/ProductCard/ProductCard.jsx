@@ -14,7 +14,7 @@ export default function ProductCard({ product, product: { id, title, price, imag
       <img src={image} alt={title} className={styles.image} />
       <div className={styles.info}>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.price}>{price}</p>
+        <p className={styles.price}>{price.toLocaleString()}</p>
       </div>
     </li>
   );

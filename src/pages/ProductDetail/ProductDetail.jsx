@@ -39,7 +39,7 @@ export default function ProductDetail() {
         </div>
         <div className={styles.info}>
           <h2 className={styles.title}>{title}</h2>
-          <p className={styles.price}>{price}</p>
+          <p className={styles.price}>{price.toLocaleString()}</p>
           <pre className={styles.description}>{description}</pre>
           <div className={styles.options}>
             <label htmlFor='select' className={styles.options__text}>

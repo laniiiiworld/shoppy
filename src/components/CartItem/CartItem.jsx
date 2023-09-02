@@ -22,7 +22,7 @@ export default function CartItem({ item, item: { id, image, title, option, price
       <div className={styles.info}>
         <span className={styles.title}>{title}</span>
         <span className={styles.option}>{option}</span>
-        <span className={styles.price}>{price}</span>
+        <span className={styles.price}>{price.toLocaleString()}</span>
       </div>
       <div className={styles.buttons}>
         <AiOutlineMinusSquare className={styles.button} onClick={handleMinus} />
